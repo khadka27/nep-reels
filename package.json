@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "bcryptjs": "^3.0.2",
+    "daisyui": "^4.12.23",
     "imagekit": "^6.0.0",
     "imagekitio-next": "^1.0.1",
     "mongoose": "^8.10.1",
