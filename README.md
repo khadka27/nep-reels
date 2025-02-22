@@ -106,16 +106,23 @@ To run NepReels locally, you need to set up your environment variables which inc
 
 Create a `.env.local` file in the root of your project and add the following lines:
 
-# MongoDB
+## MongoDB
+ ```bash
 MONGODB_URI=mongodb://localhost:27017/your_db_name
+```
 
-# Authentication
+## Authentication
+ ```bash
 NEXTAUTH_SECRET=your_secret
 
-# ImageKit Configuration
+```
+
+## ImageKit Configuration
+ ```bash
 NEXT_PUBLIC_PUBLIC_KEY=your_imagekit_public_key
 IMAGEKIT_PRIVATE_KEY=your_imagekit_private_key
 NEXT_PUBLIC_URL_ENDPOINT=your_imagekit_url_endpoint
+```
 
 
 
@@ -123,12 +130,13 @@ NEXT_PUBLIC_URL_ENDPOINT=your_imagekit_url_endpoint
 
 Ensure your application reads these environment variables properly. For example, in Next.js, you would use these variables in your pages or API routes like so:
 
-
+ ```bash
 const dbURI = process.env.MONGODB_URI;
 const nextAuthSecret = process.env.NEXTAUTH_SECRET;
 const imageKitPublicKey = process.env.NEXT_PUBLIC_PUBLIC_KEY;
 const imageKitPrivateKey = process.env.IMAGEKIT_PRIVATE_KEY;
 const imageKitEndpoint = process.env.NEXT_PUBLIC_URL_ENDPOINT;
+```
 
 
 ### Explanation
@@ -142,4 +150,4 @@ This README provides a comprehensive guide that covers all the essentials needed
 - **License information** - Standard practice to include which license the project is under (assuming MIT for open source).
 
 Remember to replace placeholders with actual links and project details as necessary, especially around deployment steps and environment setup.
-```
+
