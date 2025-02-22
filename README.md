@@ -28,7 +28,7 @@ Before you begin, ensure you have the following installed:
    git clone https://github.com/khadka27/NepReels.git
    ```
 
-````
+
 
 2. Navigate to the project directory:
    ```bash
@@ -61,6 +61,7 @@ To deploy the project, you can use Vercel, a platform optimized for Next.js appl
 
 ## Built With
 
+
 - [Next.js](https://nextjs.org/) - The React framework used
 - [Tailwind CSS](https://tailwindcss.com/) - Styling framework
 - [ImageKit](https://www.imagekit.io/) - Used for image optimization and management
@@ -86,7 +87,7 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 - Inspiration
 - etc
 
-```
+
 
 ## Environment Setup
 
@@ -105,7 +106,6 @@ To run NepReels locally, you need to set up your environment variables which inc
 
 Create a `.env.local` file in the root of your project and add the following lines:
 
-```plaintext
 # MongoDB
 MONGODB_URI=mongodb://localhost:27017/your_db_name
 
@@ -123,7 +123,7 @@ NEXT_PUBLIC_URL_ENDPOINT=your_imagekit_url_endpoint
 
 Ensure your application reads these environment variables properly. For example, in Next.js, you would use these variables in your pages or API routes like so:
 
-```javascript
+
 const dbURI = process.env.MONGODB_URI;
 const nextAuthSecret = process.env.NEXTAUTH_SECRET;
 const imageKitPublicKey = process.env.NEXT_PUBLIC_PUBLIC_KEY;
@@ -143,4 +143,3 @@ This README provides a comprehensive guide that covers all the essentials needed
 
 Remember to replace placeholders with actual links and project details as necessary, especially around deployment steps and environment setup.
 ```
-````
