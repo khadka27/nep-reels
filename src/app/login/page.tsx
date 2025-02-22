@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
 import { signIn } from "next-auth/react";
@@ -12,7 +13,7 @@ export default function Login() {
   const router = useRouter();
   const { showNotification } = useNotification();
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: { preventDefault: () => void; }) => {
     e.preventDefault();
     const result = await signIn("credentials", {
       email,

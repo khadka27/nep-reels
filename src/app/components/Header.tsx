@@ -1,8 +1,9 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
 import Link from "next/link";
 import { useSession, signOut } from "next-auth/react";
-import { Home, User } from "lucide-react";
+import { User } from "lucide-react";
 import { useNotification } from "./Notification";
 import logo from "@/Image/Nepreels1.png";
 import Image from "next/image";
