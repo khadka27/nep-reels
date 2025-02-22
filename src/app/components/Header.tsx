@@ -4,6 +4,8 @@ import Link from "next/link";
 import { useSession, signOut } from "next-auth/react";
 import { Home, User } from "lucide-react";
 import { useNotification } from "./Notification";
+import logo from "@/Image/Nepreels1.png";
+import Image from "next/image";
 
 export default function Header() {
   const { data: session } = useSession();
@@ -19,80 +21,81 @@ export default function Header() {
   };
 
   return (
-    <div className="navbar bg-base-300 sticky top-0 z-40">
+    <div className="navbar bg-base-300 sticky top-0 z-40 shadow">
       <div className="container mx-auto">
-        <div className="flex-1 px-2 lg:flex-none">
+        <div className="flex-1">
           <Link
             href="/"
             className="btn btn-ghost text-xl gap-2 normal-case font-bold"
             prefetch={true}
-            onClick={() =>
-              showNotification("Welcome to ImageKit ReelsPro", "info")
-            }
+            onClick={() => showNotification("Welcome to NepReels", "info")}
           >
-            <Home className="w-5 h-5" />
-            ImageKit ReelsPro
+            <div className="relative mr-2 w-12 h-12 rounded-full overflow-hidden">
+              <Image
+                src={logo}
+                alt="NepReels Logo"
+                layout="fill" // This allows the image to fill the container
+                objectFit="cover" // Adjusts the image's size to cover the area of the container
+                className="rounded-full" // Ensures the img element itself is fully round
+              />
+            </div>
+            <span className="text-xl font-bold">नेपReels</span>
           </Link>
         </div>
-        <div className="flex flex-1 justify-end px-2">
-          <div className="flex items-stretch gap-2">
-            <div className="dropdown dropdown-end">
-              <div
-                tabIndex={0}
-                role="button"
-                className="btn btn-ghost btn-circle"
-              >
-                <User className="w-5 h-5" />
-              </div>
-              <ul
-                tabIndex={0}
-                className="dropdown-content z-[1] shadow-lg bg-base-100 rounded-box w-64 mt-4 py-2"
-              >
-                {session ? (
-                  <>
-                    <li className="px-4 py-1">
-                      <span className="text-sm opacity-70">
-                        {session.user?.email?.split("@")[0]}
-                      </span>
-                    </li>
-                    <div className="divider my-1"></div>
-
-                    <li>
-                      <Link
-                        href="/upload"
-                        className="px-4 py-2 hover:bg-base-200 block w-full"
-                        onClick={() =>
-                          showNotification("Welcome to Admin Dashboard", "info")
-                        }
-                      >
-                        Video Upload
-                      </Link>
-                    </li>
-
-                    <li>
-                      <button
-                        onClick={handleSignOut}
-                        className="px-4 py-2 text-error hover:bg-base-200 w-full text-left"
-                      >
-                        Sign Out
-                      </button>
-                    </li>
-                  </>
-                ) : (
+        <div className="flex flex-1 justify-end">
+          <div className="dropdown dropdown-end">
+            <div
+              tabIndex={0}
+              role="button"
+              className="btn btn-ghost btn-circle"
+            >
+              <User className="w-5 h-5" />
+            </div>
+            <ul
+              tabIndex={0}
+              className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
+            >
+              {session ? (
+                <>
+                  <li>
+                    <span className="text-sm opacity-70">
+                      {session.user?.email?.split("@")[0]}
+                    </span>
+                  </li>
+                  <li className="menu-title">
+                    <span>Account</span>
+                  </li>
                   <li>
                     <Link
-                      href="/login"
-                      className="px-4 py-2 hover:bg-base-200 block w-full"
+                      href="/upload"
+                      className="justify-between"
                       onClick={() =>
-                        showNotification("Please sign in to continue", "info")
+                        showNotification("Welcome to Admin Dashboard", "info")
                       }
                     >
-                      Login
+                      Video Upload
                     </Link>
                   </li>
-                )}
-              </ul>
-            </div>
+                  <li>
+                    <button onClick={handleSignOut} className="justify-between">
+                      Sign Out
+                    </button>
+                  </li>
+                </>
+              ) : (
+                <li>
+                  <Link
+                    href="/login"
+                    className="justify-between"
+                    onClick={() =>
+                      showNotification("Please sign in to continue", "info")
+                    }
+                  >
+                    Login
+                  </Link>
+                </li>
+              )}
+            </ul>
           </div>
         </div>
       </div>

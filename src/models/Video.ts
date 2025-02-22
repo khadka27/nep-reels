@@ -1,12 +1,14 @@
 import mongoose, { Schema, model, models } from "mongoose";
 
+// Define standard video dimensions
 export const VIDEO_DIMENSIONS = {
   width: 1080,
   height: 1920,
 } as const;
 
-export interface IVideo {
-  _id?: mongoose.Types.ObjectId;
+// Define TypeScript interface for video documents
+export interface IVideo extends mongoose.Document {
+  _id: mongoose.Types.ObjectId;
   title: string;
   description: string;
   videoUrl: string;
@@ -17,8 +19,11 @@ export interface IVideo {
     width: number;
     quality?: number;
   };
+  createdAt?: Date;
+  updatedAt?: Date;
 }
 
+// Define video schema
 const videoSchema = new Schema<IVideo>(
   {
     title: { type: String, required: true },
@@ -29,12 +34,13 @@ const videoSchema = new Schema<IVideo>(
     transformation: {
       height: { type: Number, default: VIDEO_DIMENSIONS.height },
       width: { type: Number, default: VIDEO_DIMENSIONS.width },
-      quality: { type: Number, min: 1, max: 100 },
+      quality: { type: Number, min: 1, max: 100, default: 80 },
     },
   },
   { timestamps: true }
 );
 
-const Video = models?.Video || model<IVideo>("Video", videoSchema);
+// Prevent model re-compilation
+const Video = models.Video || model<IVideo>("Video", videoSchema);
 
 export default Video;

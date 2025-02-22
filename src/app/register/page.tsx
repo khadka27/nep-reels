@@ -12,7 +12,7 @@ export default function Register() {
   const router = useRouter();
   const { showNotification } = useNotification();
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (password !== confirmPassword) {
@@ -44,61 +44,60 @@ export default function Register() {
   };
 
   return (
-    <div className="max-w-md mx-auto">
-      <h1 className="text-2xl font-bold mb-4">Register</h1>
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <div>
-          <label htmlFor="email" className="block mb-1">
-            Email
-          </label>
-          <input
-            type="email"
-            id="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-            className="w-full px-3 py-2 border rounded"
-          />
-        </div>
-        <div>
-          <label htmlFor="password" className="block mb-1">
-            Password
-          </label>
-          <input
-            type="password"
-            id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-            className="w-full px-3 py-2 border rounded"
-          />
-        </div>
-        <div>
-          <label htmlFor="confirmPassword" className="block mb-1">
-            Confirm Password
-          </label>
-          <input
-            type="password"
-            id="confirmPassword"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            required
-            className="w-full px-3 py-2 border rounded"
-          />
-        </div>
-        <button
-          type="submit"
-          className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600"
-        >
-          Register
-        </button>
-        <p className="text-center mt-4">
-          Already have an account?{" "}
-          <Link href="/login" className="text-blue-500 hover:text-blue-600">
-            Login
-          </Link>
-        </p>
-      </form>
+    <div className="flex flex-col justify-center items-center min-h-screen bg-base-100">
+      <div className="card w-96 bg-base-100 shadow-xl p-4">
+        <h1 className="text-3xl font-bold text-center mb-6">Register</h1>
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <div className="form-control">
+            <label htmlFor="email" className="label">
+              <span className="label-text">Email</span>
+            </label>
+            <input
+              type="email"
+              id="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              className="input input-bordered w-full"
+            />
+          </div>
+          <div className="form-control">
+            <label htmlFor="password" className="label">
+              <span className="label-text">Password</span>
+            </label>
+            <input
+              type="password"
+              id="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              className="input input-bordered w-full"
+            />
+          </div>
+          <div className="form-control">
+            <label htmlFor="confirmPassword" className="label">
+              <span className="label-text">Confirm Password</span>
+            </label>
+            <input
+              type="password"
+              id="confirmPassword"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              required
+              className="input input-bordered w-full"
+            />
+          </div>
+          <button type="submit" className="btn btn-primary w-full">
+            Register
+          </button>
+          <p className="text-center mt-4">
+            Already have an account?{" "}
+            <Link href="/login" legacyBehavior>
+              <a className="link link-primary">Login</a>
+            </Link>
+          </p>
+        </form>
+      </div>
     </div>
   );
 }

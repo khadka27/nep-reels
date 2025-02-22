@@ -8,7 +8,7 @@ import { useNotification } from "./Notification";
 import { apiClient } from "@/lib/api-client";
 import FileUpload from "./FileUpload";
 
-interface VideoFormData {
+interface NewVideoFormData {
   title: string;
   description: string;
   videoUrl: string;
@@ -25,7 +25,7 @@ export default function VideoUploadForm() {
     handleSubmit,
     setValue,
     formState: { errors },
-  } = useForm<VideoFormData>({
+  } = useForm<NewVideoFormData>({
     defaultValues: {
       title: "",
       description: "",
@@ -37,6 +37,7 @@ export default function VideoUploadForm() {
   const handleUploadSuccess = (response: IKUploadResponse) => {
     setValue("videoUrl", response.filePath);
     setValue("thumbnailUrl", response.thumbnailUrl || response.filePath);
+    setUploadProgress(100); // Mark upload as complete
     showNotification("Video uploaded successfully!", "success");
   };
 
@@ -44,7 +45,7 @@ export default function VideoUploadForm() {
     setUploadProgress(progress);
   };
 
-  const onSubmit = async (data: VideoFormData) => {
+  const onSubmit = async (data: NewVideoFormData) => {
     if (!data.videoUrl) {
       showNotification("Please upload a video first", "error");
       return;
@@ -52,7 +53,7 @@ export default function VideoUploadForm() {
 
     setLoading(true);
     try {
-      await apiClient.createVideo(data);
+      await apiClient.createVideo(data as any);
       showNotification("Video published successfully!", "success");
 
       // Reset form after successful submission
@@ -72,69 +73,79 @@ export default function VideoUploadForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-      <div className="form-control">
-        <label className="label">Title</label>
-        <input
-          type="text"
-          className={`input input-bordered ${
-            errors.title ? "input-error" : ""
-          }`}
-          {...register("title", { required: "Title is required" })}
-        />
-        {errors.title && (
-          <span className="text-error text-sm mt-1">
-            {errors.title.message}
-          </span>
-        )}
-      </div>
+    <div className="card bg-base-100 shadow-xl p-6 mx-auto">
+      <h2 className="text-2xl font-bold text-center mb-6">Upload New Reel</h2>
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+        <div className="form-control w-full max-w-xs">
+          <label className="label">
+            <span className="label-text">Title</span>
+          </label>
+          <input
+            type="text"
+            placeholder="Enter video title"
+            className={`input input-bordered w-full ${
+              errors.title ? "input-error" : ""
+            }`}
+            {...register("title", { required: "Title is required" })}
+          />
+          {errors.title && (
+            <label className="label">
+              <span className="label-text-alt text-error">
+                {errors.title.message}
+              </span>
+            </label>
+          )}
+        </div>
 
-      <div className="form-control">
-        <label className="label">Description</label>
-        <textarea
-          className={`textarea textarea-bordered h-24 ${
-            errors.description ? "textarea-error" : ""
-          }`}
-          {...register("description", { required: "Description is required" })}
-        />
-        {errors.description && (
-          <span className="text-error text-sm mt-1">
-            {errors.description.message}
-          </span>
-        )}
-      </div>
+        <div className="form-control w-full max-w-xs">
+          <label className="label">
+            <span className="label-text">Description</span>
+          </label>
+          <textarea
+            placeholder="Video description"
+            className={`textarea textarea-bordered h-24 ${
+              errors.description ? "textarea-error" : ""
+            }`}
+            {...register("description", {
+              required: "Description is required",
+            })}
+          />
+          {errors.description && (
+            <label className="label">
+              <span className="label-text-alt text-error">
+                {errors.description.message}
+              </span>
+            </label>
+          )}
+        </div>
 
-      <div className="form-control">
-        <label className="label">Upload Video</label>
-        <FileUpload
-          fileType="video"
-          onSuccess={handleUploadSuccess}
-          onProgress={handleUploadProgress}
-        />
-        {uploadProgress > 0 && (
-          <div className="w-full bg-gray-200 rounded-full h-2.5 mt-2">
-            <div
-              className="bg-primary h-2.5 rounded-full transition-all duration-300"
-              style={{ width: `${uploadProgress}%` }}
-            />
-          </div>
-        )}
-      </div>
+        <div className="form-control">
+          <label className="label">
+            <span className="label-text">Upload Video</span>
+          </label>
+          <FileUpload
+            fileType="video"
+            onSuccess={handleUploadSuccess}
+            onProgress={handleUploadProgress}
+          />
+          {uploadProgress > 0 && (
+            <div className="progress progress-primary w-full">
+              <div
+                className="progress-bar"
+                style={{ width: `${uploadProgress}%` }}
+              ></div>
+            </div>
+          )}
+        </div>
 
-      <button
-        type="submit"
-        className="btn btn-primary btn-block"
-        disabled={loading || !uploadProgress}
-      >
-        {loading ? (
-          <>
-            <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-            Publishing Video...
-          </>
-        ) : (
-          "Publish Video"
-        )}
-      </button>
-    </form>
+        <button
+          type="submit"
+          className={`btn btn-primary w-full ${loading ? "loading" : ""}`}
+          disabled={loading || !uploadProgress}
+        >
+          {loading ? "Publishing..." : "Publish Video"}
+        </button>
+      </form>
+    </div>
   );
 }

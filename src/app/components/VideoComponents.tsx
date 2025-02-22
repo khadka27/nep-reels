@@ -2,24 +2,30 @@ import { IKVideo } from "imagekitio-next";
 import Link from "next/link";
 import { IVideo } from "@/models/Video";
 
-export default function VideoComponent({ video }: { video: IVideo }) {
+export default function VideoComponent({ video }: { readonly video?: IVideo }) {
+  if (!video) {
+    return (
+      <p className="text-red-500 text-center p-4">
+        Error: Video data is missing.
+      </p>
+    );
+  }
+
+  // Convert Mongoose ObjectId to string for URL usage
+  const videoId = video._id ? video._id.toString() : "#";
+
   return (
     <div className="card bg-base-100 shadow hover:shadow-lg transition-all duration-300">
       <figure className="relative px-4 pt-4">
-        <Link href={`/videos/${video._id}`} className="relative group w-full">
+        <Link href={`/videos/${videoId}`} className="relative group w-full">
           <div
             className="rounded-xl overflow-hidden relative w-full"
             style={{ aspectRatio: "9/16" }}
           >
             <IKVideo
               path={video.videoUrl}
-              transformation={[
-                {
-                  height: "1920",
-                  width: "1080",
-                },
-              ]}
-              controls={video.controls}
+              transformation={[{ height: "1920", width: "1080" }]}
+              controls={video.controls ?? true}
               className="w-full h-full object-cover"
             />
           </div>
@@ -28,14 +34,15 @@ export default function VideoComponent({ video }: { video: IVideo }) {
 
       <div className="card-body p-4">
         <Link
-          href={`/videos/${video._id}`}
+          href={`/videos/${videoId}`}
           className="hover:opacity-80 transition-opacity"
         >
-          <h2 className="card-title text-lg">{video.title}</h2>
+          <h2 className="card-title text-lg">
+            {video.title || "Untitled Video"}
+          </h2>
         </Link>
-
         <p className="text-sm text-base-content/70 line-clamp-2">
-          {video.description}
+          {video.description || "No description available."}
         </p>
       </div>
     </div>

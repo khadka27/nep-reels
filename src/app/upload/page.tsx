@@ -1,7 +1,6 @@
 "use client";
 
-import VideoUploadForm from "@/app/components/VideoComponents";
-
+import VideoUploadForm from "@/app/components/VideoUplaodForm";
 export default function VideoUploadPage() {
   return (
     <div className="container mx-auto px-4 py-8">

@@ -12,7 +12,7 @@ export default function Login() {
   const router = useRouter();
   const { showNotification } = useNotification();
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const result = await signIn("credentials", {
       email,
@@ -29,48 +29,49 @@ export default function Login() {
   };
 
   return (
-    <div className="max-w-md mx-auto">
-      <h1 className="text-2xl font-bold mb-4">Login</h1>
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <div>
-          <label htmlFor="email" className="block mb-1">
-            Email
-          </label>
-          <input
-            type="email"
-            id="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-            className="w-full px-3 py-2 border rounded"
-          />
-        </div>
-        <div>
-          <label htmlFor="password" className="block mb-1">
-            Password
-          </label>
-          <input
-            type="password"
-            id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-            className="w-full px-3 py-2 border rounded"
-          />
-        </div>
-        <button
-          type="submit"
-          className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600"
-        >
+    <div className="flex flex-col justify-center items-center min-h-screen bg-base-100">
+      <div className="card w-96 bg-base-100 shadow-xl p-4">
+        <h1 className="text-3xl font-bold text-center mb-6 text-primary">
           Login
-        </button>
-        <p className="text-center mt-4">
-          Don&apos;t have an account?{" "}
-          <Link href="/register" className="text-blue-500 hover:text-blue-600">
-            Register
-          </Link>
-        </p>
-      </form>
+        </h1>
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <div className="form-control">
+            <label htmlFor="email" className="label">
+              <span className="label-text">Email</span>
+            </label>
+            <input
+              type="email"
+              id="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              className="input input-bordered w-full"
+            />
+          </div>
+          <div className="form-control">
+            <label htmlFor="password" className="label">
+              <span className="label-text">Password</span>
+            </label>
+            <input
+              type="password"
+              id="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              className="input input-bordered w-full"
+            />
+          </div>
+          <button type="submit" className="btn btn-primary w-full">
+            Login
+          </button>
+          <p className="text-center mt-4">
+            Don&apos;t have an account?{" "}
+            <Link href="/register" legacyBehavior>
+              <a className="link link-primary">Register</a>
+            </Link>
+          </p>
+        </form>
+      </div>
     </div>
   );
 }
