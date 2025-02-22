@@ -42,52 +42,7 @@ Before you begin, ensure you have the following installed:
    ```
 4. Set up environment variables:
    - Rename `.env.example` to `.env` and fill in your variables
-
-### Running the Application
-
-To run the application locally, use the following command:
-
-```bash
-npm run dev
-# or
-yarn dev
-```
-
-Visit `http://localhost:3000` to view the application.
-
-## Deployment
-
-To deploy the project, you can use Vercel, a platform optimized for Next.js applications. Follow the instructions provided by Vercel to connect your GitHub repository and deploy your application.
-
-## Built With
-
-
-- [Next.js](https://nextjs.org/) - The React framework used
-- [Tailwind CSS](https://tailwindcss.com/) - Styling framework
-- [ImageKit](https://www.imagekit.io/) - Used for image optimization and management
-- [Next-Auth](https://next-auth.js.org/) - Authentication for React apps
-
-## Authors
-
-- **Abishek Khadka** - _Initial work_ - [khadka27](https://github.com/khadka27)
-
-## Contact
-
-- **Email**: abishekkhadka90@gmail.com
-- **GitHub**: [khadka27](https://github.com/khadka27)
-- **Portfolio**: [abhishekkhadka.vercel.app](https://abhishekkhadka.vercel.app)
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
-
-## Acknowledgments
-
-- Hat tip to anyone whose code was used
-- Inspiration
-- etc
-
-
+  
 
 ## Environment Setup
 
@@ -137,6 +92,53 @@ const imageKitPublicKey = process.env.NEXT_PUBLIC_PUBLIC_KEY;
 const imageKitPrivateKey = process.env.IMAGEKIT_PRIVATE_KEY;
 const imageKitEndpoint = process.env.NEXT_PUBLIC_URL_ENDPOINT;
 ```
+
+
+
+### Running the Application
+
+To run the application locally, use the following command:
+
+```bash
+npm run dev
+# or
+yarn dev
+```
+
+Visit `http://localhost:3000` to view the application.
+
+## Deployment
+
+To deploy the project, you can use Vercel, a platform optimized for Next.js applications. Follow the instructions provided by Vercel to connect your GitHub repository and deploy your application.
+
+## Built With
+
+
+- [Next.js](https://nextjs.org/) - The React framework used
+- [Tailwind CSS](https://tailwindcss.com/) - Styling framework
+- [ImageKit](https://www.imagekit.io/) - Used for image optimization and management
+- [Next-Auth](https://next-auth.js.org/) - Authentication for React apps
+
+## Authors
+
+- **Abishek Khadka** - _Initial work_ - [khadka27](https://github.com/khadka27)
+
+## Contact
+
+- **Email**: abishekkhadka90@gmail.com
+- **GitHub**: [khadka27](https://github.com/khadka27)
+- **Portfolio**: [abhishekkhadka.vercel.app](https://abhishekkhadka.vercel.app)
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
+
+## Acknowledgments
+
+- Hat tip to anyone whose code was used
+- Inspiration
+- etc
+
 
 
 ### Explanation
