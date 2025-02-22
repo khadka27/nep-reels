@@ -24,11 +24,10 @@ Before you begin, ensure you have the following installed:
 ### Installation
 
 1. Clone the repository:
+
    ```bash
    git clone https://github.com/khadka27/NepReels.git
    ```
-
-
 
 2. Navigate to the project directory:
    ```bash
@@ -42,16 +41,17 @@ Before you begin, ensure you have the following installed:
    ```
 4. Set up environment variables:
    - Rename `.env.example` to `.env` and fill in your variables
-  
 
 ## Environment Setup
 
 To run NepReels locally, you need to set up your environment variables which include connections to MongoDB, authentication mechanisms, and configurations for ImageKit.
 
 1. **MongoDB URI**:
+
    - This is the connection string to your MongoDB database. If you're using a local setup, it might look like this: `mongodb://localhost:27017/your_db_name`. For production, use the connection string provided by your MongoDB hosting like Atlas.
 
 2. **NextAuth Secret**:
+
    - A secret used to encrypt your session cookies and tokens. You can generate a random one by running `openssl rand -hex 32` in your terminal.
 
 3. **ImageKit Configuration**:
@@ -62,38 +62,37 @@ To run NepReels locally, you need to set up your environment variables which inc
 Create a `.env.local` file in the root of your project and add the following lines:
 
 ## MongoDB
- ```bash
+
+```bash
 MONGODB_URI=mongodb://localhost:27017/your_db_name
 ```
 
 ## Authentication
- ```bash
+
+```bash
 NEXTAUTH_SECRET=your_secret
 
 ```
 
 ## ImageKit Configuration
- ```bash
+
+```bash
 NEXT_PUBLIC_PUBLIC_KEY=your_imagekit_public_key
 IMAGEKIT_PRIVATE_KEY=your_imagekit_private_key
 NEXT_PUBLIC_URL_ENDPOINT=your_imagekit_url_endpoint
 ```
 
-
-
 ### Further Integration into Application Configuration
 
 Ensure your application reads these environment variables properly. For example, in Next.js, you would use these variables in your pages or API routes like so:
 
- ```bash
+```bash
 const dbURI = process.env.MONGODB_URI;
 const nextAuthSecret = process.env.NEXTAUTH_SECRET;
 const imageKitPublicKey = process.env.NEXT_PUBLIC_PUBLIC_KEY;
 const imageKitPrivateKey = process.env.IMAGEKIT_PRIVATE_KEY;
 const imageKitEndpoint = process.env.NEXT_PUBLIC_URL_ENDPOINT;
 ```
-
-
 
 ### Running the Application
 
@@ -112,7 +111,6 @@ Visit `http://localhost:3000` to view the application.
 To deploy the project, you can use Vercel, a platform optimized for Next.js applications. Follow the instructions provided by Vercel to connect your GitHub repository and deploy your application.
 
 ## Built With
-
 
 - [Next.js](https://nextjs.org/) - The React framework used
 - [Tailwind CSS](https://tailwindcss.com/) - Styling framework
@@ -139,8 +137,6 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 - Inspiration
 - etc
 
-
-
 ### Explanation
 
 This README provides a comprehensive guide that covers all the essentials needed for someone to start using your project. It includes:
@@ -152,4 +148,3 @@ This README provides a comprehensive guide that covers all the essentials needed
 - **License information** - Standard practice to include which license the project is under (assuming MIT for open source).
 
 Remember to replace placeholders with actual links and project details as necessary, especially around deployment steps and environment setup.
-
